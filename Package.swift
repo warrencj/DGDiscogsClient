@@ -1,3 +1,5 @@
+// swift-tools-version:5.0
+// Package.swift
 //
 //  Package.swift
 //  DGDiscogsHelper
