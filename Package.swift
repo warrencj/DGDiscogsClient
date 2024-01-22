@@ -1,20 +1,28 @@
-// swift-tools-version:5.0
-// Package.swift
-//
-//  Package.swift
-//  DGDiscogsHelper
-//
-//  Created by Daven Gomes on 18/12/2016.
-//  Copyright © 2016 Daven Gomes. All rights reserved.
-//
+// swift-tools-version: 5.9
+// The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
 
 let package = Package(
-    name: "DGDiscogsHelper",
-    targets: [],
-    dependencies: [
-        .Package(url: "https://github.com/SwiftyJSON/SwiftyJSON.git", versions: Version(1,0,0)..<Version(3, .max, .max)),
-        .Package(url: "https://github.com/Alamofire/Alamofire.git", majorVersion: 4)
-        ]
+    name: "DGDiscogsClient",
+    products: [
+        // Products define the executables and libraries a package produces, making them visible to other packages.
+        .library(
+            name: "DGDiscogsClient",
+            targets: ["DGDiscogsClient"]),
+    ],
+		dependencies: [.package(url: "https://github.com/SwiftyJSON/SwiftyJSON.git", .upToNextMajor(from: "5.0.1")),
+									 .package(url: "https://github.com/Alamofire/Alamofire.git", .upToNextMajor(from: "5.8.1")),
+		],
+    targets: [
+        // Targets are the basic building blocks of a package, defining a module or a test suite.
+        // Targets can depend on other targets in this package and products from dependencies.
+        .target(
+            name: "DGDiscogsClient",
+						dependencies: ["SwiftyJSON", "Alamofire"]
+				),
+        .testTarget(
+            name: "DGDiscogsClientTests",
+            dependencies: ["DGDiscogsClient"]),
+    ]
 )
