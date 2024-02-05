@@ -17,7 +17,7 @@ public class DGDiscogsManager {
     
     public var user: DGDiscogsUser! = nil
     
-//    public var adapter = Session.default.adapter
+		public var session = Session.default
     
     public func getAuthenticatedUser(
         setAsMainUser: Bool = false,
